@@ -23,8 +23,8 @@ const ProductCard = ({ product, index, onNotify }: ProductCardProps) => {
   const badge = product.category === "bestseller"
     ? { text: "✦ Mais Vendido", className: "bg-rose-brand text-white" }
     : product.available
-    ? { text: "Novo", className: "bg-rose-ink text-white" }
-    : null;
+      ? { text: "Novo", className: "bg-rose-ink text-white" }
+      : null;
 
   const emBreveBadge = !product.available;
 
@@ -42,9 +42,8 @@ const ProductCard = ({ product, index, onNotify }: ProductCardProps) => {
         <img
           src={product.image}
           alt={product.name}
-          className={`w-full h-full object-cover transition-transform duration-[600ms] ease-out group-hover:scale-[1.06] ${
-            !product.available ? "blur-[6px] brightness-105" : ""
-          }`}
+          className={`w-full h-full object-cover transition-transform duration-[600ms] ease-out group-hover:scale-[1.06] ${!product.available ? "blur-[6px] brightness-105" : ""
+            }`}
           loading="lazy"
         />
 
@@ -85,7 +84,7 @@ const ProductCard = ({ product, index, onNotify }: ProductCardProps) => {
 
         <div className="flex items-baseline gap-2 mt-3">
           <span className="font-display font-medium text-[22px] text-rose-brand">
-            R$ {product.price}
+            {typeof product.price === 'number' ? `R$ ${product.price.toFixed(2)}` : product.price}
           </span>
           {product.originalPrice && (
             <span className="font-body text-[13px] text-rose-ink-secondary line-through">
@@ -96,11 +95,10 @@ const ProductCard = ({ product, index, onNotify }: ProductCardProps) => {
 
         <button
           onClick={() => !product.available && onNotify(product)}
-          className={`mt-3 w-full py-3.5 rounded-md text-button transition-all duration-200 ${
-            product.available
+          className={`mt-3 w-full py-3.5 rounded-md text-button transition-all duration-200 ${product.available
               ? "btn-shimmer bg-rose-brand text-white hover:bg-rose-dark hover:-translate-y-px hover:shadow-card-hover"
               : "bg-transparent border-[1.5px] border-rose-brand text-rose-brand hover:bg-rose-light"
-          }`}
+            }`}
         >
           {product.available ? "Comprar" : "Avisar-me"}
         </button>
