@@ -1,0 +1,213 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 20 33% 98%;
+    --foreground: 340 25% 10%;
+    --card: 20 33% 98%;
+    --card-foreground: 340 25% 10%;
+    --popover: 20 33% 98%;
+    --popover-foreground: 340 25% 10%;
+    --primary: 342 60% 47%;
+    --primary-foreground: 20 33% 98%;
+    --primary-light: 342 65% 86%;
+    --primary-dark: 342 55% 43%;
+    --secondary: 330 40% 95%;
+    --secondary-foreground: 340 25% 10%;
+    --muted: 330 30% 95%;
+    --muted-foreground: 340 15% 33%;
+    --accent: 330 40% 95%;
+    --accent-foreground: 340 25% 10%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 20 33% 98%;
+    --border: 330 35% 88%;
+    --input: 330 35% 88%;
+    --ring: 342 60% 47%;
+    --radius: 0.5rem;
+
+    --color-primary: #D4567A;
+    --color-primary-light: #F2C4D0;
+    --color-primary-dark: #A8344F;
+    --color-accent: #F7E8EE;
+    --color-surface: #FDFAF9;
+    --color-surface-2: #F9F1F4;
+    --color-ink: #1C1215;
+    --color-ink-secondary: #6B4F57;
+    --color-border: #EDD5DE;
+    --color-success: #7EAF8A;
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  ::selection {
+    background: var(--color-primary-light);
+    color: var(--color-ink);
+  }
+  ::-moz-selection {
+    background: var(--color-primary-light);
+    color: var(--color-ink);
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-surface-2);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-primary);
+  border-radius: 999px;
+}
+
+/* Typography utility classes */
+@layer utilities {
+  .font-display {
+    font-family: 'Cormorant Garamond', serif;
+  }
+  .font-body {
+    font-family: 'DM Sans', sans-serif;
+  }
+  .text-display {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: 72px;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+  }
+  .text-h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 400;
+    font-size: 52px;
+    line-height: 1.15;
+  }
+  .text-h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 400;
+    font-size: 40px;
+    line-height: 1.2;
+  }
+  .text-h3 {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+    font-size: 18px;
+  }
+  .text-caption {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 400;
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .text-button {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  @media (max-width: 768px) {
+    .text-display {
+      font-size: 42px;
+    }
+    .text-h1 {
+      font-size: 36px;
+    }
+    .text-h2 {
+      font-size: 28px;
+    }
+  }
+}
+
+/* Grain overlay */
+.grain-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.04;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 256px 256px;
+}
+
+/* Shimmer animation for CTA buttons */
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.btn-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+.btn-shimmer::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255,255,255,0.2) 50%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 3s ease-in-out infinite;
+  pointer-events: none;
+}
+
+/* SVG checkmark draw animation */
+@keyframes draw-check {
+  0% { stroke-dashoffset: 48; }
+  100% { stroke-dashoffset: 0; }
+}
+.animate-draw-check {
+  stroke-dasharray: 48;
+  stroke-dashoffset: 48;
+  animation: draw-check 0.6s ease forwards 0.2s;
+}
+
+/* Pulse dot for "Em Breve" */
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(0.8); }
+}
+.pulse-dot::before {
+  content: '';
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  background: var(--color-primary);
+  border-radius: 50%;
+  margin-right: 6px;
+  animation: pulse-dot 1.5s ease-in-out infinite;
+}
