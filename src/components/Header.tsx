@@ -16,10 +16,10 @@ const Header = () => {
 
   return (
     <>
-      <header className="fixed top-0 left-0 right-0 z-50 h-[72px] flex items-center" style={{ background: "rgba(253,250,249,0.85)", backdropFilter: "blur(20px) saturate(180%)", borderBottom: "1px solid rgba(237,213,222,0.6)" }}>
-        <div className="w-full max-w-content mx-auto px-6 flex items-center justify-between">
+      <header className="fixed top-0 left-0 right-0 z-50 h-[92px] flex items-center" style={{ background: "rgba(253,250,249,0.85)", backdropFilter: "blur(20px) saturate(180%)", borderBottom: "1px solid rgba(237,213,222,0.6)" }}>
+        <div className="w-full max-w-content mx-auto px-4 md:px-6 flex items-center justify-between">
           <Link to="/" className="flex items-center">
-            <img src={daltLogo} alt="Dalt Lingerie" className="h-16" />
+            <img src={daltLogo} alt="Dalt Lingerie" className="h-20" />
           </Link>
 
           {/* Desktop Nav */}

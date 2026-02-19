@@ -27,21 +27,20 @@ const sortOptions: { key: SortKey; label: string }[] = [
 
 const FilterBar = ({ activeCategory, setActiveCategory, sortBy, setSortBy, resultCount }: FilterBarProps) => (
   <div
-    className="sticky top-[72px] z-40 h-16 flex items-center border-b border-rose-border"
+    className="sticky top-[92px] z-40 flex items-center border-b border-rose-border transition-all duration-200"
     style={{ background: "rgba(253,250,249,0.92)", backdropFilter: "blur(20px)" }}
   >
-    <div className="max-w-content mx-auto w-full px-6 flex items-center justify-between gap-4">
+    <div className="max-w-content mx-auto w-full px-4 md:px-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 py-3 md:py-0 h-auto md:h-16">
       {/* Categories */}
-      <div className="flex gap-2 overflow-x-auto no-scrollbar">
+      <div className="flex gap-2 overflow-x-auto no-scrollbar w-full md:w-auto pb-1 md:pb-0">
         {categories.map((cat) => (
           <button
             key={cat.key}
             onClick={() => setActiveCategory(cat.key)}
-            className={`relative whitespace-nowrap px-5 py-2 rounded-pill font-body text-[13px] uppercase tracking-[0.06em] border-[1.5px] transition-all duration-200 ${
-              activeCategory === cat.key
-                ? "bg-rose-brand border-rose-brand text-white"
-                : "border-rose-border text-rose-ink-secondary hover:bg-rose-accent"
-            }`}
+            className={`relative whitespace-nowrap px-5 py-2 rounded-pill font-body text-[13px] uppercase tracking-[0.06em] border-[1.5px] transition-all duration-200 ${activeCategory === cat.key
+              ? "bg-rose-brand border-rose-brand text-white"
+              : "border-rose-border text-rose-ink-secondary hover:bg-rose-accent"
+              }`}
           >
             {activeCategory === cat.key && (
               <motion.div
@@ -57,7 +56,7 @@ const FilterBar = ({ activeCategory, setActiveCategory, sortBy, setSortBy, resul
       </div>
 
       {/* Right side */}
-      <div className="hidden sm:flex items-center gap-4">
+      <div className="flex w-full md:w-auto items-center justify-between md:justify-end gap-4">
         <span className="font-body text-xs text-rose-ink-secondary whitespace-nowrap">{resultCount} produtos</span>
         <select
           value={sortBy}

@@ -25,8 +25,10 @@ const Index = () => {
     else if (activeCategory === "launch") filtered = filtered.filter((p) => p.category === "launch");
     else if (activeCategory === "available") filtered = filtered.filter((p) => p.available);
 
-    if (sortBy === "price-asc") filtered.sort((a, b) => a.price - b.price);
-    else if (sortBy === "price-desc") filtered.sort((a, b) => b.price - a.price);
+    const getPrice = (p: Product) => (typeof p.price === 'number' ? p.price : 0);
+
+    if (sortBy === "price-asc") filtered.sort((a, b) => getPrice(a) - getPrice(b));
+    else if (sortBy === "price-desc") filtered.sort((a, b) => getPrice(b) - getPrice(a));
     else if (sortBy === "newest") filtered.sort((a, b) => (a.category === "launch" ? -1 : 1));
 
     return filtered;
@@ -45,9 +47,9 @@ const Index = () => {
         resultCount={filteredProducts.length}
       />
 
-      <main className="pt-12 pb-30 max-w-content mx-auto px-6" style={{ paddingTop: 80, paddingBottom: 120 }}>
+      <main className="pt-12 pb-30 max-w-content mx-auto px-4 md:px-6" style={{ paddingTop: 120, paddingBottom: 120 }}>
         {filteredProducts.length > 0 ? (
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-6">
             <AnimatePresence mode="popLayout">
               {filteredProducts.map((product, i) => (
                 <ProductCard
